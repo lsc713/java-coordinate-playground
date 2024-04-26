@@ -30,6 +30,14 @@ public class Rectangular extends AbstractFigure{
         }
     }
 
+    private List<Integer> distinctPoint(List<Point> pointList,
+        Function<Point, Integer> mapfunction) {
+        return pointList.stream()
+            .map(mapfunction)
+            .distinct()
+            .collect(Collectors.toList());
+    }
+
     @Override
     public double getArea() {
         double width = calculateDifference(distinctPoint(this.points, Point::getX));
@@ -45,11 +53,5 @@ public class Rectangular extends AbstractFigure{
 
     private double calculateDifference(List<Integer> points) {
         return Math.abs(points.get(0) - points.get(1));
-    }
-
-    private List<Integer> distinctPoint(List<Point> pointList,
-        Function<Point, Integer> mapfunction) {
-        return pointList.stream()
-            .map(mapfunction).distinct().collect(Collectors.toList());
     }
 }

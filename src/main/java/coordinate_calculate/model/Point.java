@@ -59,4 +59,12 @@ public class Point {
     public int hashCode() {
         return Objects.hash(x, y);
     }
+
+    public double calculateSlope(Point other) {
+        if (this.x == other.x) {
+            return Double.MAX_VALUE;
+        }
+
+        return Math.abs((other.y - this.y) / (other.x - this.x));
+    }
 }
